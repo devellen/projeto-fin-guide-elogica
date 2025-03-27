@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&display=swap');
+
+*{
+    font-family: "Murecho", sans-serif;
+;
+}
+
+body {
+    background-color: #201924;
+}
+
+.image {
+    width: 45vh;
+}
+
+.input-init::placeholder {
+    color: white;
+}
+
+
+.button {
+    background-color: #AD8AFF;
+    border: none;
+}
