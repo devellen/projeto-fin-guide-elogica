@@ -3,7 +3,7 @@ import  Conta  from "../types/Conta.js";
 
 
 //quem controla a parte de exibição do saldo
-const elementoSaldo = document.querySelector(".saldo-valor  ") as HTMLElement;
+const elementoSaldo = document.querySelector(".saldo-valor .saldo") as HTMLElement;
 
 renderizarSaldo();
 function renderizarSaldo(): void {

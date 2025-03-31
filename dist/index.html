@@ -22,47 +22,50 @@
                     <img class="image w-md-50" src="../dist/images/logo.png" alt="">
                 </header>
                 <h3>Nova Transação</h3>
+                <form action="" method="post">
+                    <div>
+                        <label for="exampleDataList" class="form-label">Tipo de Transação</label>
+                        <select class="form-select form-select-md text-white bg-dark border-0" id="tipoTransacao">
+                            <!--select do bootstrap-->
+                            <option selected value="Compra">Compra</option>
+                            <option value="Venda">Venda</option>
+                        </select>
+                    </div>
 
-                <div>
-                    <label for="exampleDataList" class="form-label">Tipo de Transação</label>
-                    <select class="form-select form-select-md text-white bg-dark border-0"> <!--select do bootstrap-->
-                        <option selected value="Compra">Compra</option>
-                        <option value="Venda">Venda</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="">Mercadoria</label>
-                    <input type="text" class="form-control border-0 bg-dark text-white input-init"
-                        placeholder="Produto">
-                    <!--input do bootstrap-->
-                </div>
-
-                <div class="row"><!--grid do bootstrap-->
-                    <div class="col-6">
-                        <label for="">Quantidade</label>
-                        <input type="text" class="form-control border-0 bg-dark text-white input-init" placeholder="00">
+                    <div>
+                        <label for="">Mercadoria</label>
+                        <input type="text" class="form-control border-0 bg-dark text-white input-init"
+                            placeholder="Produto" id="mercadoria">
                         <!--input do bootstrap-->
                     </div>
-                    <div class="col-6">
-                        <label for="">Valor</label>
-                        <input type="text" class="form-control border-0 bg-dark text-white input-init"
-                            placeholder="R$ 0,00"><!--input do bootstrap-->
+
+                    <div class="row"><!--grid do bootstrap-->
+                        <div class="col-6">
+                            <label for="">Quantidade</label>
+                            <input type="text" class="form-control border-0 bg-dark text-white input-init"
+                                placeholder="00" id="quantidade">
+                            <!--input do bootstrap-->
+                        </div>
+                        <div class="col-6">
+                            <label for="">Valor</label>
+                            <input type="text" class="form-control border-0 bg-dark text-white input-init"
+                                placeholder="R$ 0,00" id="valor"><!--input do bootstrap-->
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <p class="text-decoration-underline text-end">Limpar</p>
-                </div>
+                    <div>
+                        <p class="text-decoration-underline text-end">Limpar</p>
+                    </div>
 
-                <div class="d-flex flex-column align-items-center gap-2 p-2 p-md-0 col-md-6 w-100">
-                    <button type="button" class="btn btn-light w-100 fw-bold button" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">Adicionar</button>
-                    <button type="button" class="btn btn-light w-100 fw-bold button d-lg-none">
-                        <a class=" link-underline link-underline-opacity-0 text-black" href="#sec2">Visualizar
-                            extrato</a>
-                    </button>
-                </div>
+                    <div class="d-flex flex-column align-items-center gap-2 p-2 p-md-0 col-md-6 w-100">
+                        <button type="button" class="btn btn-light w-100 fw-bold button" id="buttonEnviar" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">Adicionar</button>
+                        <button type="button" class="btn btn-light w-100 fw-bold button d-lg-none">
+                            <a class=" link-underline link-underline-opacity-0 text-black" href="#sec2">Visualizar
+                                extrato</a>
+                        </button>
+                    </div>
+                </form>
             </div>
 
 
@@ -78,7 +81,7 @@
                         <h3>Extrato</h3>
                         <div class="saldo-valor">
                             <h5>Saldo</h5>
-                            <h5 class="saldo">3000</h5>
+                            <h5 class="saldo"></h5>
                         </div>
 
                     </div>
@@ -101,83 +104,7 @@
                                     <td>R$2.000,00</td>
                                     <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>IPhone 16</td>
-                                    <td>1</td>
-                                    <td>R$2.000,00</td>
-                                    <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -196,22 +123,23 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog text-white text-center">
             <div class="modal-content bg-dark">
-                <div class="modal-header d-flex flex-column ">
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                <div class="d-flex flex-column ">
+                    <button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal"
                         aria-label="Close"></button>
                     <h1 class="modal-title fs-1 text-success" id="exampleModalLabel"><i class="bi bi-check-circle"></i>
                     </h1>
-                    <h6>Confirma a adição do produto?</h6>
+                    <h6 class="fs-4">Confirma a adição do produto?</h6>
 
                 </div>
-                <div class="modal-body">
-                    <p>Item: <span>Notebook</span></p>
-                    <p>Quantidade: <span>2</span></p>
-                    <p>Valor: <span>5000</span></p>
+                <div class="modal-body" id="body-modal">
+                    <p>Item: <span id="item"></span></p>
+                    <p>Quantidade: <span id="qtd"></span></p>
+                    <p>Valor: <span id="valorP"></span></p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Adicionar</button>
+                <div class="modal-footer d-flex justify-content-around">
+                    <button type="button" class="btn btn-outline-secondary rounded-0"
+                        data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary rounded-0" id="buttonTransacao">Adicionar</button>
                 </div>
             </div>
         </div>
