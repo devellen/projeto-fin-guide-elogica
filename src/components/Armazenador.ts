@@ -14,4 +14,6 @@ export class Armazenador {
 
         return JSON.parse(valor) as T;
     }
+
+    //localstore.removeItem
 }

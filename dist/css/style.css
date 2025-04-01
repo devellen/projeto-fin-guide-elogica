@@ -21,17 +21,22 @@ body {
     color: white;
 }
 
+.saldo-valor {
+    color: #AD8AFF;
+}
+.footer {
+    color: #AD8AFF;
+}
 
 .button {
     background-color: #AD8AFF;
     border: none;
 }
 
+
 @media (min-width: 1024px) {
     .image {
         width: 20vh;
     }
-    .form {
-        
-    }
+
 }

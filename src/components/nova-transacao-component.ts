@@ -3,18 +3,19 @@ import { Transacao } from "../types/Transacao.js";
 import conta from "../types/Conta.js";
 import { formatarMoeda } from "../utils/formatadores.js";
 import SaldoComponent from "./saldo-component.js";
+import ExtratoComponent from "./extrato-component.js";
 
-const elementoFormulario = document.querySelector('.form') as HTMLFormElement;
+const elementoFormulario = document.querySelector('form') as HTMLFormElement;
 const botaoConfirmar = document.getElementById('buttonTransacao') as HTMLButtonElement;
 
 elementoFormulario.addEventListener("click", function (event) {
-    try{
+    try {
         event.preventDefault();
 
         const inputMercadoria = elementoFormulario.querySelector('#mercadoria') as HTMLInputElement;
         const inputQuantidade = elementoFormulario.querySelector('#quantidade') as HTMLInputElement;
         const inputValor = elementoFormulario.querySelector('#valor') as HTMLInputElement;
-        
+
 
         let mercadoria: string = inputMercadoria.value;
         let quantidade: number = parseInt(inputQuantidade.value, 10) || 0;
@@ -32,10 +33,10 @@ elementoFormulario.addEventListener("click", function (event) {
         paragrafoValor.textContent = formatarMoeda(valor);
 
     }
-    catch(erro) {
+    catch (erro) {
         alert(erro.message);
     }
-    
+
 })
 
 botaoConfirmar.addEventListener("click", function () {
@@ -64,8 +65,17 @@ botaoConfirmar.addEventListener("click", function () {
         // Registrar na conta
         conta.registrarTransacao(novaTransacao);
         SaldoComponent.atualizar();
+        ExtratoComponent.atualizar();
 
-        alert("Transação adicionada com sucesso!");
+        elementoFormulario.reset();
+
+        // Limpar os valores do modal
+        document.getElementById('item').textContent = "";
+        document.getElementById('qtd').textContent = "";
+        document.getElementById('valorP').textContent = "";
+
+        document.getElementById("button-close").click();
+        
     } catch (erro) {
         alert("Erro ao salvar transação: " + erro.message);
     }
