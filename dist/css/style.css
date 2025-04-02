@@ -33,6 +33,17 @@ body {
     border: none;
 }
 
+#clear {
+    cursor: pointer;
+}
+
+#footer-table {
+    
+    position: sticky; /* Fixa o rodapé no final da tabela */
+    bottom: 0; /* Posiciona o rodapé na parte inferior */
+    background-color: black;
+}
+
 
 @media (min-width: 1024px) {
     .image {

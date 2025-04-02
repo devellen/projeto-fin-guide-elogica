@@ -1,6 +1,7 @@
 import { formatarMoeda } from "../utils/formatadores.js";
 import Conta from "../types/Conta.js";
 import { TipoTransacao } from "../types/TipoTransacao.js";
+import { Transacao } from "../types/Transacao.js";
 
 
 // Elemento que vai conter o extrato
@@ -9,36 +10,29 @@ renderizarExtrato();
 function renderizarExtrato(): void {
     if (!elementoExtrato) return;
 
-    const transacoes = Conta.getTransacoes();
+    const transacoes: Transacao[] = Conta.getTransacoes();
+    elementoExtrato.innerHTML ="";
 
-    if (transacoes.length === 0) {
-        elementoExtrato.innerHTML = `<div class="nenhuma-transacao">Nenhuma transação registrada</div>`;
-        return;
-    }
+    const transacoesOrdenadas = [...transacoes].reverse();
 
-    transacoes
-    .reverse()
-    .map((transacao) => {
+    for (const transacao of transacoesOrdenadas) {
         const sinal = transacao.tipoTransacao === TipoTransacao.VENDA ? "+" : "-";
         const linha = document.createElement('tr');
-        linha.innerHTML = `
-          <th scope="row">${sinal}</th>
+        linha.innerHTML += `
+        <th scope="row">${sinal}</th>
           <td>${transacao.mercadoria}</td>
           <td>${transacao.quantidade}</td>
-          <td>R$ ${formatarMoeda(transacao.valor)}</td>
-          <td class="d-none d-md-block"><i class="bi bi-trash"></i></td>
+          <td> ${formatarMoeda(transacao.valor)}</td>
+          <td class="d-none d-md-block"><i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#modalExcluir"></i></td>
         `;
 
         elementoExtrato.appendChild(linha);
-    });
+    }
 
 }
 
-// Renderiza o extrato quando o componente é carregado
-
-
 const ExtratoComponent = {
-    atualizar() {
+    atualizar(): void {
         renderizarExtrato();
     }
 }

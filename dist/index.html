@@ -8,6 +8,9 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../dist/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Fin Guide</title>
 </head>
 
@@ -38,11 +41,14 @@
                             placeholder="Produto" id="mercadoria">
                         <!--input do bootstrap-->
                     </div>
+                    <!-- <div>
+                        <input type="text" name="field-name" money-mask="" />
+                    </div> -->
 
                     <div class="row"><!--grid do bootstrap-->
                         <div class="col-6">
                             <label for="">Quantidade</label>
-                            <input type="text" class="form-control border-0 bg-dark text-white input-init"
+                            <input type="number" class="form-control border-0 bg-dark text-white input-init"
                                 placeholder="00" id="quantidade">
                             <!--input do bootstrap-->
                         </div>
@@ -54,7 +60,7 @@
                     </div>
 
                     <div>
-                        <p class="text-decoration-underline text-end">Limpar</p>
+                        <p class="text-decoration-underline text-end" id="clear">Limpar</p>
                     </div>
 
                     <div class="d-flex flex-column align-items-center gap-2 p-2 p-md-0 col-md-6 w-100">
@@ -97,20 +103,19 @@
                                 </tr>
                             </thead>
                             <tbody id="body-table">
+
                             </tbody>
-                            <tfoot class="table-black">
+                            <tfoot id="footer-table">
                                 <tr>
                                     <th></th>
                                     <td>
-                                        <p class="footer">Total</p>
+                                        <span class="footer">Total</span>
                                     </td>
                                     <td></td>
                                     <td>
-                                        <p class="footer">R$2.000</p>
+                                        <span class="footer" id="total"></span>
                                     </td>
-                                    <td class="d-none d-md-block text-dark">
-                                        <p>.</p>
-                                    </td>
+                                    <td class="text-dark d-none d-md-block">.</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -131,8 +136,8 @@
         <div class="modal-dialog text-white text-center">
             <div class="modal-content bg-dark">
                 <div class="d-flex flex-column ">
-                    <button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal"
-                        aria-label="Close" id="button-close"></button>
+                    <button type="button" class="btn-close btn-close-white " data-bs-dismiss="modal" aria-label="Close"
+                        id="button-close"></button>
                     <h1 class="modal-title fs-1 text-success" id="exampleModalLabel"><i class="bi bi-check-circle"></i>
                     </h1>
                     <h6 class="fs-4">Confirma a adição do produto?</h6>
@@ -151,12 +156,43 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-body">
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <i class="bi bi-x-circle text-danger fs-1"></i>
+                        <h1 class="fs-5 my-4">Confirma a exclusão do produto?</h1>
+                        <div class="mb-4">
+                            <p id="item" class="m-0"></p>
+                            <p id="quantidade" class="m-0"></p>
+                            <p id="valorP" class="m-0"></p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <button type="button" class="btn btn-outline-secondary rounded-0 cancelar"
+                            data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary adicionar_excluir border-0 rounded-0"
+                            data-bs-dismiss="modal" id="lixeira">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+    <script src="./js/jquery.mask.js"></script>
     <script type="module" src="./js/main.js"></script>
-
+    <script type="text/javascript">
+        $('#valor').mask('000.000.000.000.000,00', {reverse: true});
+    </script>
 </body>
 
 </html>

@@ -11,7 +11,6 @@ export class Conta {
             this.realizarVenda(novaTransacao.valor);
         } else {
             this.realizarCompra(novaTransacao.valor);
-            novaTransacao.valor *= -1; // Compra reduz saldo
         }
         
         this.transacoes.push(novaTransacao);
@@ -36,6 +35,7 @@ export class Conta {
     getTransacoes(): Transacao[] {
         return this.transacoes;
     }
+
 }
 
 

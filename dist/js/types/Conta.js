@@ -9,7 +9,6 @@ export class Conta {
         }
         else {
             this.realizarCompra(novaTransacao.valor);
-            novaTransacao.valor *= -1; // Compra reduz saldo
         }
         this.transacoes.push(novaTransacao);
         Armazenador.salvar("transacoes", this.transacoes);

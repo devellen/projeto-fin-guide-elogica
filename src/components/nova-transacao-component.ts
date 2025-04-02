@@ -4,6 +4,7 @@ import conta from "../types/Conta.js";
 import { formatarMoeda } from "../utils/formatadores.js";
 import SaldoComponent from "./saldo-component.js";
 import ExtratoComponent from "./extrato-component.js";
+import TotalTransacaoComponent from "./total-transacoes.js";
 
 const elementoFormulario = document.querySelector('form') as HTMLFormElement;
 const botaoConfirmar = document.getElementById('buttonTransacao') as HTMLButtonElement;
@@ -65,6 +66,7 @@ botaoConfirmar.addEventListener("click", function () {
         // Registrar na conta
         conta.registrarTransacao(novaTransacao);
         SaldoComponent.atualizar();
+        TotalTransacaoComponent.atualizar();
         ExtratoComponent.atualizar();
 
         elementoFormulario.reset();
@@ -80,3 +82,9 @@ botaoConfirmar.addEventListener("click", function () {
         alert("Erro ao salvar transação: " + erro.message);
     }
 });
+
+const limparForm = document.getElementById('clear');
+
+limparForm.addEventListener("click", function() {
+    elementoFormulario.reset();
+})
