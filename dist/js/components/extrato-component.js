@@ -1,13 +1,50 @@
 import { formatarMoeda } from "../utils/formatadores.js";
-import Conta from "../types/Conta.js";
 import { TipoTransacao } from "../types/TipoTransacao.js";
+import { Armazenador } from "./Armazenador.js";
 // Elemento que vai conter o extrato
 const elementoExtrato = document.querySelector("#body-table");
 renderizarExtrato();
+function excluirTransacao(transacao) {
+    const transacoes = Armazenador.obter("transacoes") || [];
+    const novasTransacoes = transacoes.filter(i => i.id !== transacao.id);
+    let saldo = parseFloat(Armazenador.obter("saldo") || "0");
+    let total = parseFloat(Armazenador.obter("total") || "0");
+    if (transacao.tipoTransacao == TipoTransacao.COMPRA) {
+        saldo += transacao.valor;
+        total += transacao.valor;
+    }
+    else {
+        saldo -= transacao.valor;
+        total -= transacao.valor;
+    }
+    Armazenador.deletar("transacoes");
+    Armazenador.deletar("saldo");
+    Armazenador.deletar("total");
+    Armazenador.salvar("transacoes", novasTransacoes);
+    Armazenador.salvar("saldo", saldo);
+    Armazenador.salvar("total", total);
+    renderizarExtrato();
+}
+function verificaBotao(transacao) {
+    const botaoExcluir = document.getElementById("excluir");
+    const mercadoriaP = document.getElementById("itemEx");
+    const quantidadeP = document.getElementById("qtdEx");
+    const valorP = document.getElementById("valorEx");
+    mercadoriaP.textContent = `Produto : ${transacao.mercadoria}`;
+    quantidadeP.textContent = `Quantidade : ${transacao.quantidade}`;
+    valorP.textContent = `valor : ${formatarMoeda(transacao.valor)}`;
+    if (botaoExcluir) {
+        botaoExcluir.addEventListener("click", () => {
+            excluirTransacao(transacao);
+            return true;
+        });
+    }
+    return false;
+}
 function renderizarExtrato() {
     if (!elementoExtrato)
         return;
-    const transacoes = Conta.getTransacoes();
+    const transacoes = Armazenador.obter("transacoes") || [];
     elementoExtrato.innerHTML = "";
     const transacoesOrdenadas = [...transacoes].reverse();
     for (const transacao of transacoesOrdenadas) {
@@ -18,8 +55,20 @@ function renderizarExtrato() {
           <td>${transacao.mercadoria}</td>
           <td>${transacao.quantidade}</td>
           <td> ${formatarMoeda(transacao.valor)}</td>
-          <td class="d-none d-md-block"><i class="bi bi-trash" data-bs-toggle="modal" data-bs-target="#modalExcluir"></i></td>
+          <td class="d-none d-md-block"><i class="bi bi-trash lixeira" data-bs-toggle="modal" data-bs-target="#modalDeletar"></i></td>
         `;
+        const botaoExcluir = linha.querySelector(".lixeira");
+        if (botaoExcluir) {
+            botaoExcluir.addEventListener("click", (event) => {
+                if (verificaBotao(transacao)) {
+                    const icone = event.target;
+                    const linha = icone.closest("tr");
+                    if (linha) {
+                        linha.remove();
+                    }
+                }
+            });
+        }
         elementoExtrato.appendChild(linha);
     }
 }

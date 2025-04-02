@@ -41,10 +41,6 @@
                             placeholder="Produto" id="mercadoria">
                         <!--input do bootstrap-->
                     </div>
-                    <!-- <div>
-                        <input type="text" name="field-name" money-mask="" />
-                    </div> -->
-
                     <div class="row"><!--grid do bootstrap-->
                         <div class="col-6">
                             <label for="">Quantidade</label>
@@ -157,7 +153,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalExcluir" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
+    <div class="modal fade" id="modalDeletar" tabindex="-1" aria-labelledby="modalExcluirLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content bg-dark">
                 <div class="modal-body">
@@ -169,16 +165,16 @@
                         <i class="bi bi-x-circle text-danger fs-1"></i>
                         <h1 class="fs-5 my-4">Confirma a exclusão do produto?</h1>
                         <div class="mb-4">
-                            <p id="item" class="m-0"></p>
-                            <p id="quantidade" class="m-0"></p>
-                            <p id="valorP" class="m-0"></p>
+                            <p><span id="itemEx"></span></p>
+                            <p><span id="qtdEx"></span></p>
+                            <p><span id="valorEx"></span></p>
                         </div>
                     </div>
                     <div class="d-flex justify-content-around">
                         <button type="button" class="btn btn-outline-secondary rounded-0 cancelar"
                             data-bs-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary adicionar_excluir border-0 rounded-0"
-                            data-bs-dismiss="modal" id="lixeira">Excluir</button>
+                            data-bs-dismiss="modal" id="excluir">Excluir</button>
                     </div>
                 </div>
             </div>
@@ -191,7 +187,7 @@
     <script src="./js/jquery.mask.js"></script>
     <script type="module" src="./js/main.js"></script>
     <script type="text/javascript">
-        $('#valor').mask('000.000.000.000.000,00', {reverse: true});
+        $('#valor').mask('000.000.000.000.000,00', { reverse: true });
     </script>
 </body>
 

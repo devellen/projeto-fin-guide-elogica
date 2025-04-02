@@ -13,4 +13,7 @@ export class Armazenador {
             return JSON.parse(valor, reviver);
         return JSON.parse(valor);
     }
+    static deletar(chave) {
+        localStorage.removeItem(chave);
+    }
 }

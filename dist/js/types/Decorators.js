@@ -1,13 +1,16 @@
-export function ValidaCompra(target, propertyKey, descriptor) {
+export function ValidaInputs(target, propertyKey, descriptor) {
     const originalMethod = descriptor.value;
-    descriptor.value = function (valorCompra) {
-        if (valorCompra <= 0) {
-            throw new Error("o valor a ser comprado deve ser maior que zero");
+    descriptor.value = function (mercadoria, valor, quantidade) {
+        if (!mercadoria || isNaN(valor)) {
+            throw new Error("preencha todos os campos.");
         }
-        if (valorCompra > this.saldo) {
-            throw new Error("seu saldo é insuficiente.");
+        if (valor <= 0 || quantidade <= 0) {
+            throw new Error("valor e quantidade deve ser maior que zero");
         }
-        return originalMethod.apply(this, [valorCompra]);
+        if (valor > 999) {
+            throw new Error("valor deve ser menor que 999");
+        }
+        return originalMethod.apply(this, [mercadoria, valor, quantidade]);
     };
     return descriptor;
 }

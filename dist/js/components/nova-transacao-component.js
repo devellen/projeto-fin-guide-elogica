@@ -5,6 +5,7 @@ import ExtratoComponent from "./extrato-component.js";
 import TotalTransacaoComponent from "./total-transacoes.js";
 const elementoFormulario = document.querySelector('form');
 const botaoConfirmar = document.getElementById('buttonTransacao');
+let cont = 0;
 elementoFormulario.addEventListener("click", function (event) {
     try {
         event.preventDefault();
@@ -32,14 +33,24 @@ botaoConfirmar.addEventListener("click", function () {
         const mercadoria = document.getElementById('item')?.textContent || "";
         const quantidade = parseInt(document.getElementById('qtd')?.textContent || "0", 10);
         const valor = parseFloat(document.getElementById('valorP')?.textContent?.replace("R$", "").replace(",", ".") || "0");
+        const id = cont++;
         const tipoTransacaoElement = elementoFormulario.querySelector('#tipoTransacao');
         const tipoTransacao = tipoTransacaoElement.value;
-        if (!mercadoria || quantidade <= 0 || isNaN(valor) || valor <= 0) {
-            alert("Erro ao confirmar: dados inválidos.");
+        if (!mercadoria || isNaN(valor)) {
+            alert("Erro ao confirmar: preencha todos os campos.");
+            return;
+        }
+        if (valor <= 0 || quantidade <= 0) {
+            alert("Erro ao confirmar: o valor tem ser maior que zero");
+            return;
+        }
+        if (valor > 999) {
+            alert("Erro ao confirmar: tem que ser menor que 999");
             return;
         }
         // Criar nova transação
         const novaTransacao = {
+            id: id,
             tipoTransacao: tipoTransacao,
             mercadoria: mercadoria,
             quantidade: quantidade,

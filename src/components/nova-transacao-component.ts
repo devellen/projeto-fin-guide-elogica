@@ -8,6 +8,7 @@ import TotalTransacaoComponent from "./total-transacoes.js";
 
 const elementoFormulario = document.querySelector('form') as HTMLFormElement;
 const botaoConfirmar = document.getElementById('buttonTransacao') as HTMLButtonElement;
+let cont: number = 0;
 
 elementoFormulario.addEventListener("click", function (event) {
     try {
@@ -28,7 +29,6 @@ elementoFormulario.addEventListener("click", function (event) {
         const paragrafoQtd = document.getElementById('qtd');
         const paragrafoValor = document.getElementById('valorP');
 
-
         paragrafoMercadoria.textContent = mercadoria;
         paragrafoQtd.textContent = quantidade.toString();
         paragrafoValor.textContent = formatarMoeda(valor);
@@ -47,16 +47,28 @@ botaoConfirmar.addEventListener("click", function () {
         const quantidade = parseInt(document.getElementById('qtd')?.textContent || "0", 10);
         const valor = parseFloat(document.getElementById('valorP')?.textContent?.replace("R$", "").replace(",", ".") || "0");
 
+        const id: number = cont++;
+
         const tipoTransacaoElement = elementoFormulario.querySelector('#tipoTransacao') as HTMLSelectElement;
         const tipoTransacao: TipoTransacao = tipoTransacaoElement.value as TipoTransacao;
 
-        if (!mercadoria || quantidade <= 0 || isNaN(valor) || valor <= 0) {
-            alert("Erro ao confirmar: dados inválidos.");
+        if (!mercadoria || isNaN(valor)) {
+            alert("Erro ao confirmar: preencha todos os campos.");
+            return;
+        }
+        if(valor <= 0 || quantidade <= 0 ) {
+            alert("Erro ao confirmar: o valor tem ser maior que zero");
+            return;
+        }
+
+        if(valor>999) {
+            alert("Erro ao confirmar: tem que ser menor que 999");
             return;
         }
 
         // Criar nova transação
         const novaTransacao: Transacao = {
+            id: id,
             tipoTransacao: tipoTransacao,
             mercadoria: mercadoria,
             quantidade: quantidade,
