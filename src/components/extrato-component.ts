@@ -36,11 +36,14 @@ function excluirTransacao(transacao: Transacao): void {
     Armazenador.salvar("total", total);
 
     renderizarExtrato();
+    TotalTransacaoComponent.atualizar();
+    SaldoComponent.atualizar();
+
 
 }
 
-function verificaBotao(transacao: Transacao): boolean {
-    const botaoExcluir = document.getElementById("excluir");
+function btnExluir(transacao: Transacao): boolean {
+    const botaoEx = document.getElementById("excluir");
     const mercadoriaP = document.getElementById("itemEx");
     const quantidadeP = document.getElementById("qtdEx");
     const valorP = document.getElementById("valorEx");
@@ -49,8 +52,8 @@ function verificaBotao(transacao: Transacao): boolean {
     quantidadeP.textContent = `Quantidade : ${transacao.quantidade}`;
     valorP.textContent = `valor : ${formatarMoeda(transacao.valor)}`;
 
-    if (botaoExcluir) {
-        botaoExcluir.addEventListener("click", () => {
+    if (botaoEx) {
+        botaoEx.addEventListener("click", () => {
             excluirTransacao(transacao);
             return true;
         });
@@ -77,11 +80,11 @@ function renderizarExtrato(): void {
           <td class="d-none d-md-block"><i class="bi bi-trash lixeira" data-bs-toggle="modal" data-bs-target="#modalDeletar"></i></td>
         `;
 
-        const botaoExcluir = linha.querySelector(".lixeira");
+        const botaoEx = linha.querySelector(".lixeira");
 
-        if (botaoExcluir) {
-            botaoExcluir.addEventListener("click", (event) => {
-                if (verificaBotao(transacao)) {
+        if (botaoEx) {
+            botaoEx.addEventListener("click", (event) => {
+                if (btnExluir(transacao)) {
                     const icone = event.target as HTMLElement;
                     const linha = icone.closest("tr");
                     if (linha) {

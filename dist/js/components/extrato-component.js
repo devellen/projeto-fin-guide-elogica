@@ -1,6 +1,8 @@
 import { formatarMoeda } from "../utils/formatadores.js";
 import { TipoTransacao } from "../types/TipoTransacao.js";
 import { Armazenador } from "./Armazenador.js";
+import SaldoComponent from "./saldo-component.js";
+import TotalTransacaoComponent from "./total-transacoes.js";
 // Elemento que vai conter o extrato
 const elementoExtrato = document.querySelector("#body-table");
 renderizarExtrato();
@@ -24,17 +26,19 @@ function excluirTransacao(transacao) {
     Armazenador.salvar("saldo", saldo);
     Armazenador.salvar("total", total);
     renderizarExtrato();
+    TotalTransacaoComponent.atualizar();
+    SaldoComponent.atualizar();
 }
-function verificaBotao(transacao) {
-    const botaoExcluir = document.getElementById("excluir");
+function btnExluir(transacao) {
+    const botaoEx = document.getElementById("excluir");
     const mercadoriaP = document.getElementById("itemEx");
     const quantidadeP = document.getElementById("qtdEx");
     const valorP = document.getElementById("valorEx");
     mercadoriaP.textContent = `Produto : ${transacao.mercadoria}`;
     quantidadeP.textContent = `Quantidade : ${transacao.quantidade}`;
     valorP.textContent = `valor : ${formatarMoeda(transacao.valor)}`;
-    if (botaoExcluir) {
-        botaoExcluir.addEventListener("click", () => {
+    if (botaoEx) {
+        botaoEx.addEventListener("click", () => {
             excluirTransacao(transacao);
             return true;
         });
@@ -57,10 +61,10 @@ function renderizarExtrato() {
           <td> ${formatarMoeda(transacao.valor)}</td>
           <td class="d-none d-md-block"><i class="bi bi-trash lixeira" data-bs-toggle="modal" data-bs-target="#modalDeletar"></i></td>
         `;
-        const botaoExcluir = linha.querySelector(".lixeira");
-        if (botaoExcluir) {
-            botaoExcluir.addEventListener("click", (event) => {
-                if (verificaBotao(transacao)) {
+        const botaoEx = linha.querySelector(".lixeira");
+        if (botaoEx) {
+            botaoEx.addEventListener("click", (event) => {
+                if (btnExluir(transacao)) {
                     const icone = event.target;
                     const linha = icone.closest("tr");
                     if (linha) {

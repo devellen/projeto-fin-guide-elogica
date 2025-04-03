@@ -49,5 +49,8 @@ body {
     .image {
         width: 20vh;
     }
+    .form {
+        background-color: #322C3A;
+    }
 
 }
